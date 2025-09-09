@@ -3,8 +3,6 @@ from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 from models import Project, Skill, Base
 
-# (The rest of the seed.py file remains the same)
-# ...
 
 # Create the tables
 Base.metadata.create_all(bind=engine)
@@ -17,7 +15,7 @@ db.query(Project).delete()
 db.query(Skill).delete()
 db.commit()
 
-# --- PROJECTS FROM YOUR RESUME ---
+# --- PROJECTS FROM MY RESUME ---
 project1 = Project(
     title="AI-Based Job Shortlisting Platform",
     description="A machine learning-powered job recommendation system using Python and Flask to enhance hiring efficiency and improve job-resume matching accuracy.",
@@ -29,7 +27,7 @@ project2 = Project(
     technologies="C"
 )
 
-# --- SKILLS FROM YOUR RESUME ---
+# --- SKILLS FROM MY RESUME ---
 skills_list = [
     # Languages
     Skill(name="C++", category="Programming Language"),
@@ -58,7 +56,7 @@ skills_list = [
     Skill(name="Project Management", category="Soft Skill"),
     Skill(name="Communication", category="Soft Skill"),
     Skill(name="Collaborative", category="Soft Skill")
-]  # <--- THIS IS THE MISSING BRACKET THAT WAS ADDED
+]  
 
 # Add all the new objects to the database session
 db.add(project1)
