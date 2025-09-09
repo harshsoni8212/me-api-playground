@@ -6,15 +6,18 @@ function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-   const url = searchQuery 
-  ? `https://me-api-playground-backend-9jod.onrender.com/projects/search/?query=${searchQuery}`
-  : 'https://me-api-playground-backend-9jod.onrender.com/projects/';
-    
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setProjects(data))
-      .catch(error => console.error('Error fetching projects:', error));
-  }, [searchQuery]);
+  // Read the API URL from the environment variable
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  const url = searchQuery 
+    ? `${apiUrl}/projects/search/?query=${searchQuery}`
+    : `${apiUrl}/projects/`;
+  
+  fetch(url)
+    .then(response => response.json())
+    .then(data => setProjects(data))
+    .catch(error => console.error('Error fetching projects:', error));
+}, [searchQuery]);
 
   return (
     <section id="projects" className="content-section">

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-// --- Import the skill icons 
+// --- Import all your skill icons ---
 import pythonIcon from '../assets/python.png';
 import sqlIcon from '../assets/sql.png';
 import reactIcon from '../assets/react.png';
@@ -13,8 +13,7 @@ import cIcon from '../assets/c.png';
 import cppIcon from '../assets/cpp.png';
 import awsIcon from '../assets/aws.png';
 
-// --- Data mappings and arrays ---
-
+// --- Create the map to link skill names to icons ---
 const skillIcons = {
   "Python": pythonIcon,
   "SQL": sqlIcon,
@@ -27,29 +26,28 @@ const skillIcons = {
   "C": cIcon,
   "C++": cppIcon,
   "AWS": awsIcon,
+  // Add any other skills that have a matching icon
 };
 
-const skills = [
-    { id: 1, name: "Python", category: "Language" },
-    { id: 2, name: "SQL", category: "Database" },
-    { id: 3, name: "React", category: "Frontend" },
-    { id: 4, name: "HTML", category: "Frontend" },
-    { id: 5, name: "CSS", category: "Frontend" },
-    { id: 6, name: "JavaScript", category: "Language" },
-    { id: 7, name: "Node.js", category: "Backend" },
-    { id: 8, name: "MongoDB", category: "Database" },
-    { id: 9, name: "C", category: "Language" },
-    { id: 10, name: "C++", category: "Language" },
-    { id: 11, name: "AWS", category: "Cloud" },
-];
-
 function Skills() {
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    
+    fetch(`${apiUrl}/skills/`)
+      .then(response => response.json())
+      .then(data => setSkills(data))
+      .catch(error => console.error('Error fetching skills:', error));
+  }, []);
+
   return (
     <section id="skills" className="content-section">
       <h2 className="section-title">Professional Skills</h2>
       <div className="skills-grid">
         {skills.map(skill => (
           <div key={skill.id} className="skill-item">
+            {/* This code now looks up the correct icon from the map */}
             <img 
               src={skillIcons[skill.name]} 
               alt={`${skill.name} icon`} 
