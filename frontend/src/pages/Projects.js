@@ -6,9 +6,9 @@ function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    let url = searchQuery 
-      ? `http://127.0.0.1:8000/projects/search/?query=${searchQuery}`
-      : 'http://127.0.0.1:8000/projects/';
+    const url = searchQuery 
+  ? `https://me-api-playground-backend-9jod.onrender.com/projects/search/?query=${searchQuery}`
+  : 'https://me-api-playground-backend-9jod.onrender.com/projects/';
     
     fetch(url)
       .then(response => response.json())
