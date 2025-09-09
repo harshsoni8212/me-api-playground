@@ -6,7 +6,7 @@ function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const url = searchQuery 
+   const url = searchQuery 
   ? `https://me-api-playground-backend-9jod.onrender.com/projects/search/?query=${searchQuery}`
   : 'https://me-api-playground-backend-9jod.onrender.com/projects/';
     
