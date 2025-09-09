@@ -10,7 +10,7 @@ function Projects() {
   ? `https://me-api-playground-backend-9jod.onrender.com/projects/search/?query=${searchQuery}`
   : 'https://me-api-playground-backend-9jod.onrender.com/projects/';
     
-    fetch(url)
+    fetch('https://me-api-playground-backend-9jod.onrender.com/projects/')
       .then(response => response.json())
       .then(data => setProjects(data))
       .catch(error => console.error('Error fetching projects:', error));
